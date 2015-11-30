@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A C# glob matcher",
   "authors": [ "SLaks", "Daniel Kailer" ],
   "tags": [ "strings", "glob", "search", "files", "wildcards", "patterns", "dnx" ],
