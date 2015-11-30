@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
+using Minimatch.DNX;
 
-namespace Minimatch.Tests
+namespace Minimatch.DNX.Tests
 {
     public class BasicTests
     {

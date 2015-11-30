@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5C05A3E0-0C5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{688849A7-C91E-4324-A7CE-4524D2D7CA56}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Minimatch", "src\Minimatch\Minimatch.xproj", "{9BC664DF-8E9D-461B-878A-8973F37DA045}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Minimatch.DNX", "src\Minimatch.DNX\Minimatch.DNX.xproj", "{9BC664DF-8E9D-461B-878A-8973F37DA045}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Minimatch.Tests", "test\Minimatch.Tests\Minimatch.Tests.xproj", "{D9E8AC71-BA4C-437E-ABCB-D530E3A13F2D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Minimatch.DNX.Tests", "test\Minimatch.DNX.Tests\Minimatch.DNX.Tests.xproj", "{D9E8AC71-BA4C-437E-ABCB-D530E3A13F2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC8AD72E-864F-4384-85DD-73EDB73B3BE6}"
 	ProjectSection(SolutionItems) = preProject

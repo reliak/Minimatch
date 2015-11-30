@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Minimatch
+namespace Minimatch.DNX
 {
     ///<summary>Contains options that control how Minimatch matches strings.</summary>
     public class Options
