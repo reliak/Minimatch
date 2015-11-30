@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "description": "Unit tests for Minimatch",
+  "authors": [ "SLaks", "Daniel Kailer" ],
+  "tags": [ "Minimatch" ],
+  "projectUrl": "https://github.com/reliak/Minimatch",
+  "licenseUrl": "http://opensource.org/licenses/MIT",
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": { }
+    },
+    "dependencies": {
+        "Minimatch": "1.1.1",
+        "xunit": "2.1.0",
+        "xunit.runner.dnx": "2.1.0-rc1-build204"
+    },
+    "commands": {
+        "test": "xunit.runner.dnx"
+    }
+}

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Minimatch.Tests
 {
-    [TestClass]
     public class BasicTests
     {
         static readonly List<Tuple<string, string>> actualRegexes = new List<Tuple<string, string>>();
@@ -15,10 +15,9 @@ namespace Minimatch.Tests
         {
             input = input ?? files;
 
-            Assert.AreEqual(
+            Assert.Equal(
                 String.Join(Environment.NewLine, expected.OrderBy(s => s)),
-                String.Join(Environment.NewLine, Minimatcher.Filter(input, pattern, options).OrderBy(s => s)),
-                "Failure from `" + pattern + "`"
+                String.Join(Environment.NewLine, Minimatcher.Filter(input, pattern, options).OrderBy(s => s))
             );
 
             var regex = Minimatcher.CreateRegex(pattern, options);
@@ -27,10 +26,10 @@ namespace Minimatch.Tests
 
         static void AssertRegexes(params string[] expectedRegexes)
         {
-            Assert.AreEqual(expectedRegexes.Length, actualRegexes.Count);
+            Assert.Equal(expectedRegexes.Length, actualRegexes.Count);
             for (int i = 0; i < actualRegexes.Count; i++)
             {
-                Assert.AreEqual(expectedRegexes[i], actualRegexes[i].Item2, "Incorrect regex for\n`" + actualRegexes[i].Item1 + "`");
+                Assert.Equal(expectedRegexes[i], actualRegexes[i].Item2);
             }
         }
 
@@ -39,8 +38,7 @@ namespace Minimatch.Tests
 
         static readonly List<string> files = new List<string>();
 
-        [TestInitialize]
-        public void DefaultFiles()
+        public BasicTests()
         {
             ReplaceFiles(
                   "a", "b", "c", "d", "abc"
@@ -50,8 +48,8 @@ namespace Minimatch.Tests
             );
             actualRegexes.Clear();
         }
-
-        [TestMethod]
+       
+        [Fact]
         public void BashCookBook()
         {
 
@@ -90,7 +88,7 @@ namespace Minimatch.Tests
                 "/^(?:s\\/(?=.)\\.\\.[^/]*?\\/)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void LegendaryLarryCrashesBashes()
         {
             TestCase("/^root:/{s/^[^:]*:[^:]*:([^:]*).*$/\\1/"
@@ -103,7 +101,7 @@ namespace Minimatch.Tests
                 "/^(?:\\/\\^root:\\/\\{s\\/(?=.)\\^[^:][^/]*?:[^:][^/]*?:\\([^:]\\)[^/]*?\\.[^/]*?\\$\\/\u0001\\/)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void CharacterClasses()
         {
             TestCase("[a-c]b*", new[] { "abc", "abd", "abe", "bb", "cb" });
@@ -144,7 +142,7 @@ namespace Minimatch.Tests
                 "false"
             );
         }
-        [TestMethod]
+        [Fact]
         public void AppleBash()
         {
             AddFiles("a-b", "aXb", ".x", ".y", "a*b/", "a*b/ooo");
@@ -221,7 +219,7 @@ namespace Minimatch.Tests
                 "/^(?:(?!\\.)(?=.)[\\[])$/",
                 "/^(?:\\[)$/",
                 "/^(?:(?=.)\\[(?!\\.)(?=.)[^/]*?)$/",
-                "/^(?:(?!\\.)(?=.)[\\]])$/", 
+                "/^(?:(?!\\.)(?=.)[\\]])$/",
                 "/^(?:(?!\\.)(?=.)[\\]-])$/",
                 "/^(?:(?!\\.)(?=.)[a-z])$/",
                 "/^(?:(?!\\.)(?=.)[^/][^/][^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/]*?[^/][^/]*?[^/]*?[^/]*?[^/]*?[^/])$/",
@@ -234,7 +232,7 @@ namespace Minimatch.Tests
                 "/^(?:\\[abc)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void NoCase()
         {
             AddFiles("a-b", "aXb", ".x", ".y", "a*b/", "a*b/ooo", "man/", "man/man1/", "man/man1/bash.1");
@@ -254,7 +252,7 @@ namespace Minimatch.Tests
                 "/^(?:(?!\\.)(?=.)[ia][^/][ck])$/i"
             );
         }
-        [TestMethod]
+        [Fact]
         public void OneStar_TwoStar()
         {
             AddFiles("a-b", "aXb", ".x", ".y", "a*b/", "a*b/ooo", "man/", "man/man1/", "man/man1/bash.1");
@@ -269,7 +267,7 @@ namespace Minimatch.Tests
                 "/^(?:\\/(?!\\.)(?=.)[^/]|(?!\\.)(?=.)[^/]*?)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void DotMatching()
         {
             AddFiles("a-b", "aXb", ".x", ".y", "a*b/", "a*b/ooo", "man/", "man/man1/", "man/man1/bash.1");
@@ -301,7 +299,7 @@ namespace Minimatch.Tests
                 "/^(?:(?:(?!(?:\\/|^)(?:\\.{1,2})($|\\/)).)*?)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void ParenSlashes()
         {
             //AddFiles("a-b", "aXb", ".x", ".y", "a*b/", "a*b/ooo", "man/", "man/man1/", "man/man1/bash.1");
@@ -376,7 +374,7 @@ namespace Minimatch.Tests
                 "/^(?:(?=.)#[^/]*?)$/"
             );
         }
-        [TestMethod]
+        [Fact]
         public void NegationTests()
         {
             // begin channelling Boole and deMorgan...
@@ -397,7 +395,7 @@ namespace Minimatch.Tests
             // negation nestled within a pattern
             ReplaceFiles("foo.js"
                         , "foo.bar"
-                // can't match this one without negative lookbehind.
+                        // can't match this one without negative lookbehind.
                         , "foo.js.js"
                         , "blar.js"
                         , "foo."
