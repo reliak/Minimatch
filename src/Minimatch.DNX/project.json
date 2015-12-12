@@ -6,13 +6,8 @@
   "projectUrl": "https://github.com/reliak/Minimatch",
   "licenseUrl": "http://opensource.org/licenses/MIT",
     "frameworks": {
-        "net451": {},
-        "dnx451": {
-            "dependencies": {
-                "System.Runtime": "4.0.21-beta-23516"
-            }
-        },
-        "dnxcore50": {
+        "net451": { },
+        "dotnet5.4": {
             "dependencies": {
                 "Microsoft.CSharp": "4.0.1-beta-23409",
                 "System.Text.RegularExpressions": "4.0.11-beta-23409"
